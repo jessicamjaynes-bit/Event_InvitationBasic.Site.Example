@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Your RSVP</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; margin: 0; padding: 0; color: #1e293b; background-color: #f8fafc; line-height: 1.6; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 18px 40px; background: #ffffff; border-bottom: 1px solid #e2e8f0; }
+        .logo { font-size: 18px; font-weight: 800; color: #0f172a; text-transform: uppercase; }
+        .nav-links a { text-decoration: none; color: #64748b; font-size: 14px; font-weight: 600; margin-left: 15px; }
+        
+        .container { max-width: 600px; margin: 40px auto; padding: 0 20px; }
+        .form-card { background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; padding: 35px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        .form-card h1 { font-size: 26px; color: #0f172a; margin-top: 0; margin-bottom: 10px; }
+        
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-group label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 6px; color: #334155; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; font-size: 14px; }
+        
+        /* RSVP Attendance Selector Options */
+        .rsvp-options { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+        .rsvp-option { border: 2px solid #cbd5e1; padding: 15px; border-radius: 8px; text-align: center; cursor: pointer; font-weight: bold; }
+        .rsvp-option.active-yes { border-color: #16a34a; background: #f0fdf4; color: #15803d; }
+        .rsvp-option.active-no { border-color: #dc2626; background: #fef2f2; color: #b91c1c; }
+
+        .btn-submit { width: 100%; background: #2563eb; color: white; border: none; padding: 14px; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer; }
+        .btn-submit:hover { background: #1d4ed8; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">🎉 Annual Gala 2026</div>
+        <div class="nav-links">
+            <a href="index.html">← Back to Event Details</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="form-card">
+            <h1>RSVP Response</h1>
+            <p style="color: #64748b; margin-bottom: 25px;">Please confirm whether you will be able to attend.</p>
+
+            <form onsubmit="event.preventDefault(); alert('RSVP submitted successfully!');">
+                <div class="form-group">
+                    <label>Will You Be Attending?</label>
+                    <div class="rsvp-options">
+                        <div class="rsvp-option active-yes" id="yesBtn" onclick="selectRsvp('yes')">
+                            ✅ Yes, Attending
+                        </div>
+                        <div class="rsvp-option" id="noBtn" onclick="selectRsvp('no')">
+                            ❌ Regretfully Decline
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="Jane Smith" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="jane@example.com" required>
+                </div>
+
+                <div class="form-group" id="guestCountGroup">
+                    <label>Number of Guests (Including Yourself)</label>
+                    <select>
+                        <option>1 Guest</option>
+                        <option>2 Guests</option>
+                        <option>3 Guests</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Dietary Restrictions / Special Requests</label>
+                    <textarea rows="3" placeholder="Vegetarian, allergies, mobility accessibility requests..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Submit RSVP Response</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function selectRsvp(status) {
+            const yesBtn = document.getElementById('yesBtn');
+            const noBtn = document.getElementById('noBtn');
+            const guestGroup = document.getElementById('guestCountGroup');
+
+            if (status === 'yes') {
+                yesBtn.className = 'rsvp-option active-yes';
+                noBtn.className = 'rsvp-option';
+                guestGroup.style.display = 'block';
+            } else {
+                yesBtn.className = 'rsvp-option';
+                noBtn.className = 'rsvp-option active-no';
+                guestGroup.style.display = 'none';
+            }
+        }
+    </script>
+
+</body>
+</html>
